@@ -14,8 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
+	# I notice that 'admin/' is the last address of 'http:127.0.0.1/admin/'
     path('admin/', admin.site.urls),
+	# Because is '', nothing, so 'http://127.0.0.1' will redirect to blog.urls!
+	path('', include('blog.urls')),
 ]
